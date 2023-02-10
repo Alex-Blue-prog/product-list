@@ -1,9 +1,10 @@
+import { Header } from "./components/Header";
 import { MainRoutes } from "./routes/MainRoutes";
 
 function App() {
   return (
     <div>
-      <h1>Titulo</h1>
+      <Header />
       <MainRoutes />
     </div>
   );

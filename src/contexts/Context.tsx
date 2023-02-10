@@ -1,14 +1,15 @@
 import {createContext, useReducer} from "react";
-import { Product } from "../types/Product";
-import { productInitialState, productReducer } from "../reducers/productReducer";
 import { ReducerActionType } from "../types/ReducerActionType";
+import { Product } from "../types/Product";
+import { productsInitialState, productReducer } from "../reducers/productsReducer";
+
 
 type InitialStateType = {
-    product: Product[]
+    products: Product[]
 }
 
 const initialState:InitialStateType = {
-    product: productInitialState
+    products: productsInitialState
 }
 
 type ContextState = {
@@ -22,7 +23,7 @@ export const Context = createContext<ContextState>({
 });
 
 const mainReducer = (state:InitialStateType, action:ReducerActionType) => ({
-    product: productReducer(state.product, action)
+    products: productReducer(state.products, action)
 });
 
 export const ContextProvider = ({children}:React.PropsWithChildren) => {

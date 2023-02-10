@@ -2,7 +2,23 @@ import { Product } from "../types/Product";
 import { ReducerActionType } from "../types/ReducerActionType";
 import {v4 as uuid} from "uuid";
 
-export const productInitialState:Product[] = [];
+export const productsInitialState:Product[] = [
+    {
+        id: "1",
+        marketName: "extra",
+        productName: "arroz",
+        price: 25,
+        year: 2022
+    },
+    {
+        id: "2",
+        marketName: "extra",
+        productName: "leite",
+        price: 35.50,
+        year: 2021
+    },
+
+];
 
 export const productReducer = (state:Product[], action:ReducerActionType) => {
 
