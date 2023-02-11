@@ -16,6 +16,10 @@ export const FormContainer = styled.div`
 
 export const Form = styled.form`
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 360px;
 
     select, input {
         width: 100%;
@@ -24,7 +28,7 @@ export const Form = styled.form`
         padding: 15px 0;
         border-bottom: 1px solid #999;
         cursor: pointer;
-        margin-bottom: 25px;
+        /* margin-bottom: 25px; */
     }
 
     input {
@@ -42,7 +46,7 @@ export const Form = styled.form`
         border-radius: 2px;
         border: 1px solid var(--mainColor);
         transition: all 100ms ease-out;
-        margin-top: 20px;
+        margin-top: 30px;
     }
 
     button:hover {
@@ -60,4 +64,17 @@ export const FormTitle = styled.h2`
 
 export const FormImageContainer = styled.div`
     flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 50px;
+
+    img {
+        width: 90%;
+    }
 `
+
+export const NoMarket = styled.img`
+    width: 100% !important;
+    opacity: 0.4;
+`;

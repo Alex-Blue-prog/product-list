@@ -20,9 +20,13 @@ export const LiImg = styled.div`
         font-size: 1rem;
         font-weight: bold;
         color: #333;
-        margin-left: 20px;
+        margin-left: 25px;
     }
-    
+
+    div {
+        width: 100px;
+    }
+
     img {
         height: 20px;
     }
@@ -47,7 +51,7 @@ export const Dots = styled.div`
 
 type OptionsProps = {
     showOp: boolean,
-    showOp2: boolean
+    showOp2?: boolean
 }
 
 export const Options = styled.div<OptionsProps>`

@@ -12,7 +12,21 @@ export const productsInitialState:Product[] = [
     },
     {
         id: "2",
-        marketName: "extra",
+        marketName: "dia",
+        productName: "leite",
+        price: 35.50,
+        year: 2021
+    },
+    {
+        id: "3",
+        marketName: "carrefour",
+        productName: "leite",
+        price: 35.50,
+        year: 2021
+    },
+    {
+        id: "4",
+        marketName: "atacadao",
         productName: "leite",
         price: 35.50,
         year: 2021

@@ -4,6 +4,9 @@ import { ChangeEvent, FormEvent, useState, useContext } from "react";
 import { BackBtn } from "../../components/BackBtn";
 //contextapi
 import { Context } from "../../contexts/Context";
+//imgs
+import marketIcon from "../../assets/marketIcon.png";
+import capitalize from "../../helpers/Capitalize";
 
 export const Create = () => {
   const {state, dispatch} = useContext(Context);
@@ -11,20 +14,8 @@ export const Create = () => {
       marketName: "",
       productName: "",
       price: 0,
-      year: 2024
+      year: new Date().getFullYear()
     });
-
-  const addProduct = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if(inputs.marketName && inputs.productName && inputs.price) {
-      dispatch({type: "ADD_PRODUCT", payload: inputs});
-      alert("item adicionado com sucesso");
-
-    } else {
-      alert("campos em branco !!!");
-    }
-  
-  }
 
   //input handlers
   const handleMarketName = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -32,7 +23,7 @@ export const Create = () => {
   }
 
   const handleProductName = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputs({...inputs, productName: e.target.value});
+    setInputs({...inputs, productName: capitalize(e.target.value)});
   }
 
   const handleProductPrice = (e: ChangeEvent<HTMLInputElement>) => {
@@ -40,6 +31,20 @@ export const Create = () => {
     setInputs({...inputs, price: Number(e.target.value)});
   }
 
+  //add producto to the context
+  const addProduct = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if(inputs.marketName && inputs.productName && inputs.price) {
+      
+      dispatch({type: "ADD_PRODUCT", payload: inputs});
+      alert("Produto adicionado com sucesso!");
+      setInputs({...inputs, marketName: "", productName: "", price: 0 });
+
+    } else {
+      alert("campos em branco!");
+    }
+  
+  }
 
   return (
     <C.Container>
@@ -50,10 +55,10 @@ export const Create = () => {
           <C.Form onSubmit={addProduct}>
               <C.FormTitle>Adicione um produto</C.FormTitle>
               <select name="marketName" onChange={handleMarketName}>
-                <option value="">Selecione um dos mercados</option>
+                <option value="" selected={!inputs.marketName ? true : false}>Selecione um dos mercados</option>
                 <option value="extra">Extra</option>
-                <option value="dias">Dias</option>
-                <option value="rede krill">Rede krill</option>
+                <option value="dia">Dia</option>
+                <option value="carrefour">Carrefour</option>
                 <option value="atacadao">Atacadão</option>
               </select>
               <input onChange={handleProductName} value={inputs.productName} type="text" placeholder="Digite o nome do produto" />
@@ -62,7 +67,13 @@ export const Create = () => {
           </C.Form>
 
           <C.FormImageContainer>
-            ...
+            {inputs.marketName &&
+            <img src={require(`../../assets/${inputs.marketName}.png`)} />
+
+            ||
+
+            <C.NoMarket src={marketIcon} />
+            }
           </C.FormImageContainer>
   
           </C.FormContainer>
