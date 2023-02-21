@@ -1,6 +1,6 @@
 export type Product = {
     id: string,
-    marketName: "extra" | "dia" | "carrefour" | "atacadao",
+    marketName: string,
     productName: string,
     price: number,
     year: number

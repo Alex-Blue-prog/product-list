@@ -54,8 +54,8 @@ export const Create = () => {
 
           <C.Form onSubmit={addProduct}>
               <C.FormTitle>Adicione um produto</C.FormTitle>
-              <select name="marketName" onChange={handleMarketName}>
-                <option value="" selected={!inputs.marketName ? true : false}>Selecione um dos mercados</option>
+              <select name="marketName" onChange={handleMarketName} value={inputs.marketName}>
+                <option value="">Selecione um dos mercados</option>
                 <option value="extra">Extra</option>
                 <option value="dia">Dia</option>
                 <option value="carrefour">Carrefour</option>
