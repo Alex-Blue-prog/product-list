@@ -1,5 +1,5 @@
 import * as C from "./styles";
-import { ChangeEvent, FormEvent, useState, useContext } from "react";
+import { ChangeEvent, FormEvent, useState, useContext, useEffect } from "react";
 //components
 import { BackBtn } from "../../components/BackBtn";
 //contextapi
@@ -7,8 +7,12 @@ import { Context } from "../../contexts/Context";
 //imgs
 import marketIcon from "../../assets/marketIcon.png";
 import capitalize from "../../helpers/Capitalize";
+import { useNavigate, useParams } from "react-router-dom";
 
 export const Create = () => {
+  const {id} = useParams();
+  const navigate = useNavigate();
+
   const {state, dispatch} = useContext(Context);
   const [inputs, setInputs] = useState({
       marketName: "",
@@ -16,6 +20,24 @@ export const Create = () => {
       price: 0,
       year: new Date().getFullYear()
     });
+
+  useEffect(() => {
+    if(id) {
+      const product = state.products.find(value => value.id === id);
+      if(product) {
+        setInputs({...product, year: new Date().getFullYear()});
+      } 
+    } else {
+      setInputs({
+        marketName: "",
+        productName: "",
+        price: 0,
+        year: new Date().getFullYear()
+      })
+
+    }
+  },[id, state.products])
+
 
   //input handlers
   const handleMarketName = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -36,9 +58,17 @@ export const Create = () => {
     e.preventDefault();
     if(inputs.marketName && inputs.productName && inputs.price) {
       
-      dispatch({type: "ADD_PRODUCT", payload: inputs});
-      alert("Produto adicionado com sucesso!");
-      setInputs({...inputs, marketName: "", productName: "", price: 0 });
+      if(!id) {
+        dispatch({type: "ADD_PRODUCT", payload: inputs});
+        alert("Produto adicionado com sucesso!");
+        setInputs({...inputs, marketName: "", productName: "", price: 0 });
+
+      } else {
+        dispatch({type: "EDIT_PRODUCT", payload: {id: id, data: inputs}});
+        alert("Produto editado com sucesso!");
+      }
+     
+      navigate("/");
 
     } else {
       alert("campos em branco!");

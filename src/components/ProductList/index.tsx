@@ -57,7 +57,7 @@ export const ProductList = ({data}:Props) => {
       <C.Dots data-dot={true} onClick={showOptions}> <RxDotsVertical data-dot={true} /></C.Dots> 
 
       <C.Options showOp={showOp} showOp2={showOp2}>
-         <Link to={`/edit/${data.id}`} style={{textDecoration: "none"}}><div>Editar</div></Link> 
+         <Link to={`/create/${data.id}`} style={{textDecoration: "none"}}><div>Editar</div></Link> 
          <div onClick={handleProductDelete}>Excluir</div>
       </C.Options>
     </C.Li>

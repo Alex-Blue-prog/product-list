@@ -21,7 +21,7 @@ export const productsInitialState:Product[] = [
         id: "3",
         marketName: "carrefour",
         productName: "Âgua",
-        price: 3.20,
+        price: 10.20,
         year: 2019
     },
     {
