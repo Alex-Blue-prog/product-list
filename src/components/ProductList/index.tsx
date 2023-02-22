@@ -45,7 +45,7 @@ export const ProductList = ({data}:Props) => {
   }
  
   return (
-    <C.Li>
+    <C.Li className="productItem">
       <C.LiImg> 
         <div>
           <img src={require(`../../assets/${data.marketName}.png`)} /> 

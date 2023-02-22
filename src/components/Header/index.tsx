@@ -4,7 +4,7 @@ import * as C from "./styles";
 export const Header = () => {
   return (
     <C.Container>
-        <C.Wrapper>
+        <C.Wrapper className="header">
             <Link to={"/"} style={{textDecoration: "none"}}>
                 <div>
                     Product List
